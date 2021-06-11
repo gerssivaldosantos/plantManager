@@ -1,16 +1,24 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, TouchableOpacityProps } from 'react-native';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
-export function Button(props) {
+//With this interface I can make my custom button inherit
+// the Title props and the other props referring to a touchable Opacity
+interface ButtonProps extends TouchableOpacityProps {
+    title: string;
+}
+
+//The ""...rest" is the ternary operator
+export function Button({title, ...rest}: ButtonProps) {
     return (
         <TouchableOpacity 
             style={styles.container}
-            onPress={props.function}
+          
+            {...rest}
             >
             <Text style={styles.text}>
-                {props.text}
+                {title}
             </Text>
         </TouchableOpacity>
     )
@@ -23,6 +31,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
+        width:'90%'
 
     },
     text: {
@@ -30,6 +39,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: colors.white,
         fontFamily: fonts.heading,
-        paddingHorizontal: 114
+        paddingHorizontal: 20
     }
 })

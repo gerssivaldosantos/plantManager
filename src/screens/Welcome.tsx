@@ -12,7 +12,12 @@ import {
 import { Feather } from "@expo/vector-icons";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import { useNavigation } from "@react-navigation/core";
 export function Welcome() {
+    const navigation = useNavigation();
+    function handleStart(){
+        navigation.navigate('UserIdentification')
+    }
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.subcontainer}>
@@ -31,7 +36,12 @@ export function Welcome() {
                     Não esqueça mais de regar suas plantas. Nós cuidamos de
                     lembrar você sempre que precisar
                 </Text>
-                <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+                <TouchableOpacity 
+                
+                activeOpacity={0.7} 
+                style={styles.button}
+                onPress={handleStart}
+                >
                     <Feather
                         style={styles.buttonIcon}
                         size={30}
@@ -57,7 +67,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     title: {
-        fontWeight: "bold",
+        
         fontSize: 32,
         color: colors.heading,
         textAlign: "center",

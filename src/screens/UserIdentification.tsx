@@ -11,14 +11,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { Button } from "../components/Button";
+import { useNavigation } from "@react-navigation/core";
 
 export function UserIndentification() {
+
+    //THE HOOKS OF THE PROJECT
+
     //I wouldn't need to infer the type directly in these cases,
     //I preferred to do it to be more didactic, but it would be
     //automatically inferred by TypeScript because the default value is a boolean
     const [isFocused, setisFocused] = useState<boolean>(false);
     const [isFilled, setisFilled] = useState<boolean>(false);
     const [name, setname] = useState<string>();
+
+    const navigation = useNavigation();
+
+    //THE FUNCTIONS OF THE PROJECT
+
     //Functions for green in focused input
     function handleInputBlur() {
         //learn the perfect cenary  for insert useState
@@ -36,8 +45,8 @@ export function UserIndentification() {
         setname(value);
     }
 
-    function Confirm() {
-        alert(name);
+    function handleSubmit() {
+        navigation.navigate("Confirmation");
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -70,7 +79,7 @@ export function UserIndentification() {
                             onChangeText={(text) => handleInputChange(text)}
                         />
 
-                        <Button function={Confirm} text="confirmar" />
+                        <Button onPress={handleSubmit} title="confirmar" />
                     </View>
                 </View>
             </KeyboardAvoidingView>
@@ -104,7 +113,7 @@ const styles = StyleSheet.create({
         lineHeight: 32,
         textAlign: "center",
         color: colors.heading,
-        fontWeight: "bold",
+        fontFamily: fonts.heading
     },
     input: {
         borderBottomWidth: 1,
