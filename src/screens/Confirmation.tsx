@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Button } from "../components/Button";
@@ -5,6 +6,10 @@ import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
 export function Confirmation() {
+    const navigation = useNavigation();
+    function handleMoveOn() {
+        navigation.navigate("PlantSelect");
+    }
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
@@ -16,7 +21,7 @@ export function Confirmation() {
                 </Text>
             </View>
             <View style={styles.footer}>
-                <Button title="Continuar" />
+                <Button onPress={handleMoveOn} title="Continuar" />
             </View>
         </SafeAreaView>
     );
@@ -29,13 +34,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     content: {
-        alignItems:'center',
-        width:"80%",
-        justifyContent:'center'
+        alignItems: "center",
+        width: "80%",
+        justifyContent: "center",
     },
     emoji: {
-        fontSize:80,
-        textAlign:'center'
+        fontSize: 80,
+        textAlign: "center",
     },
     title: {
         fontSize: 22,
@@ -53,9 +58,9 @@ const styles = StyleSheet.create({
         color: colors.heading,
     },
     footer: {
-        alignItems:'center',
+        alignItems: "center",
         //backgroundColor:'#121212',
-        width:'100%',
-        paddingHorizontal: 75
+        width: "100%",
+        paddingHorizontal: 75,
     },
 });

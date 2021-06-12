@@ -14,7 +14,6 @@ import { Button } from "../components/Button";
 import { useNavigation } from "@react-navigation/core";
 
 export function UserIndentification() {
-
     //THE HOOKS OF THE PROJECT
 
     //I wouldn't need to infer the type directly in these cases,
@@ -46,7 +45,9 @@ export function UserIndentification() {
     }
 
     function handleSubmit() {
-        navigation.navigate("Confirmation");
+        if (isFilled) {
+            navigation.navigate("Confirmation");
+        }
     }
     return (
         <SafeAreaView style={styles.container}>
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
         lineHeight: 32,
         textAlign: "center",
         color: colors.heading,
-        fontFamily: fonts.heading
+        fontFamily: fonts.heading,
     },
     input: {
         borderBottomWidth: 1,
